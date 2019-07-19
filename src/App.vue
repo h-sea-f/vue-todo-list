@@ -2,7 +2,12 @@
   <div id="app">
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <counter msg="haha"/>
+    <ul id="example-1">
+      <li v-for="item in 2">
+        <counter></counter>
+      </li>
+    </ul>
+
   </div>
 </template>
 
@@ -15,7 +20,8 @@ export default {
   components: {
     // HelloWorld,
     counter
-  }
+  },
+
 }
 </script>
 
