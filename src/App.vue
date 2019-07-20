@@ -1,46 +1,22 @@
 <template>
-  <div id="app">
-      <input type="text" v-model="countNumber">
-      <counterSum :countSum="countSum"></counterSum>
-      <counterGroup :counterNum="parseInt(countNumber)||0" @transmit="addCountSum"></counterGroup>
-  </div>
+    <div id="app" class="container">
+        <div>
+            <h2>Jquery To Do List</h2>
+            <p><em>Simple Todo List with adding and filter by diff status.</em></p>
+        </div>
+        <div>
+            <input type="text" class="input-text" name="ListItem">
+            <div id="button">Add</div>
+        </div>
+    </div>
 </template>
 
 <script>
-import counterSum from './components/counterSum.vue'
-import counterGroup from './components/counterGroup.vue'
-export default {
-  name: 'app',
-  components: {
-    // HelloWorld,
-     counterGroup,counterSum
-  },
-  data() {
-      return {
-          countNumber: 0,
-          countSum: 0
-      }
-  },
-  methods: {
-      init() {
-          this.countSum = 0;
-      },
-      addCountSum(countSum) {
-          this.countSum = countSum;
-      }
-  }
-
-
-}
+    export default {
+        name: 'app',
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    @import url('./css/app.css');
 </style>
