@@ -17,9 +17,11 @@
         methods: {
             decrease() {
                 this.count--;
+                this.$emit('calculateToCounter',-1)
             },
             increase() {
                 this.count++;
+                this.$emit('calculateToCounter',1);
             }
         }
     }

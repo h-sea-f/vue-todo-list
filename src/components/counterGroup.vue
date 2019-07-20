@@ -1,25 +1,33 @@
 <template>
     <div id="counterGroup">
-        <input type="text" v-model="countNumber">
+
+        <counter v-for="count in counterNum" v-bind:key="count" @calculateToCounter="calculate"></counter>
     </div>
 </template>
 
 <script>
+    import counter from './counter.vue'
     export default {
-        name: 'counter',
+        name: 'counterGroup',
+        props: {
+          counterNum:Number
+        },
+        components: {
+            // HelloWorld,
+            counter
+        },
         data() {
             return {
-                count: 0,
+                counterSum: 0
             }
         },
         methods: {
-            decrease() {
-                this.count--;
-            },
-            increase() {
-                this.count++;
+            calculate(number) {
+                this.counterSum += number;
+                this.$emit("transmit", this.counterSum);
             }
         }
+
     }
 
 </script>

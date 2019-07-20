@@ -1,25 +1,21 @@
 <template>
     <div id="counterSum">
-        <p></p>
+        <span>CountSum：{{countSum}}</span>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'counter',
+        name: 'counterSum',
         data() {
             return {
-                count: 0,
+                sumNumber: 0
             }
         },
-        methods: {
-            decrease() {
-                this.count--;
-            },
-            increase() {
-                this.count++;
-            }
-        }
+        props: {
+            countSum: Number
+        },
+
     }
 
 </script>
