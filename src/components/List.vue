@@ -1,9 +1,9 @@
 <template>
 <div>
     <ol>
-        <li v-for="item in items">
-            <input  name="done-todo" type="checkbox"  class="done-todo" @click="finish($event)">
-            <span>{{item}}</span>
+        <li v-for="item in items" v-bind:class="{checked:item.isChecked}">
+            <input  name="done-todo" type="checkbox"  class="done-todo" v-model="item.isChecked">
+            <span>{{item.content}}</span>
         </li>
     </ol>
 </div>
@@ -14,12 +14,7 @@
         props: {
             items: Array
         },
-        methods: {
-            finish(e){
-                alert(e.currentTarget);
-                e.currentTarget.class="checked";
-            }
-        }
+
 
     }
 

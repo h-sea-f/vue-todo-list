@@ -9,6 +9,20 @@
             <div id="button" @click="addItem">Add</div>
         </div>
         <todolist :items="items"></todolist>
+        <div>
+            <ul id="filters">
+                <li>
+                    <a href="#" data-filter="all" @click="showAll">ALL</a>
+                </li>
+                <li>
+                    <a href="#" data-filter="active" @click="showActive">Active</a>
+                </li>
+                <li>
+                    <a href="#" data-filter="complete" @click="showCompleted">Complete</a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </template>
 
@@ -22,13 +36,24 @@ export default {
     data() {
         return {
             items: [],
-            item: ""
+            item: "",
+            itemsCopy:[]
         }
     },
     methods: {
         addItem(){
-            this.items.push(this.item);
+            this.items.push({content:this.item,isChecked:false});
+            this.itemsCopy = this.items.slice();
             this.item="";
+        },
+        showAll(){
+            this.items = this.itemsCopy;
+        },
+        showActive(){
+            this.items = this.itemsCopy.filter(item=>item.isChecked==false)
+        },
+        showCompleted(){
+            this.items = this.itemsCopy.filter(item=>item.isChecked==true)
         }
     }
 }
