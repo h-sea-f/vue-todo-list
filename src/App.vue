@@ -7,10 +7,8 @@
         <div>
             <input type="text" class="input-text" name="ListItem" v-model="item">
             <div id="button" @click="addItem">Add</div>
-            {{item}}
-            {{items}}
         </div>
-        <todolist></todolist>
+        <todolist :items="items"></todolist>
     </div>
 </template>
 
@@ -30,6 +28,7 @@ export default {
     methods: {
         addItem(){
             this.items.push(this.item);
+            this.item="";
         }
     }
 }
