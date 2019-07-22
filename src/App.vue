@@ -9,29 +9,18 @@
             <div id="button" @click="addItem">Add</div>
         </div>
         <todolist :items="itemsShow"></todolist>
-        <div>
-            <ul id="filters">
-                <li>
-                    <a href="#" data-filter="all" @click="showAll">ALL</a>
-                </li>
-                <li>
-                    <a href="#" data-filter="active" @click="showActive">Active</a>
-                </li>
-                <li>
-                    <a href="#" data-filter="complete" @click="showCompleted">Complete</a>
-                </li>
-            </ul>
-
-        </div>
+        <foot @change="changeShow"></foot>
     </div>
 </template>
 
 <script>
 import todolist from './components/List.vue'
+import foot from './components/Foot.vue'
 export default {
     name: 'app',
     components: {
         todolist,
+        foot
     },
     data() {
         return {
@@ -45,25 +34,19 @@ export default {
         addItem(){
             this.items.push({content:this.item,isChecked:false});
             this.itemsCopy = this.items.slice();
-            this.item="";
+            this.item = "";
         },
-        showAll(){
-            this.state = 0;
-        },
-        showActive(){
-            this.state = 1;
-        },
-        showCompleted(){
-            this.state = 2;
+        changeShow(flag){
+            this.state = flag;
         }
     },
     computed: {
         itemsShow: function () {
             if(this.state === 1) {
-                return this.itemsCopy.filter(item=>item.isChecked==false);
+                return this.itemsCopy.filter(item=>item.isChecked === false);
             }
             if(this.state === 2){
-                return this.itemsCopy.filter(item=>item.isChecked==true);
+                return this.itemsCopy.filter(item=>item.isChecked === true);
             }
             return this.items;
         }
