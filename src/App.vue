@@ -8,7 +8,7 @@
             <input type="text" class="input-text" name="ListItem" v-model="item">
             <div id="button" @click="addItem">Add</div>
         </div>
-        <todolist :items="itemsShow"></todolist>
+        <todolist></todolist>
         <foot @change="changeShow"></foot>
     </div>
 </template>
@@ -27,30 +27,19 @@ export default {
             items: [],
             item: "",
             itemsCopy:[],
-            state: 0
         }
     },
     methods: {
         addItem(){
             // this.items.push({content:this.item,isChecked:false});
             // this.itemsCopy = this.items.slice();
+
+            this.$store.commit('addItem',{content:this.item,isChecked:false,id:Date.parse(new Date())});
             this.item = "";
-            this.$store.commit('addItem',{content:this.item,isChecked:false})
+
         },
         changeShow(flag){
             this.state = flag;
-        }
-    },
-    computed: {
-        itemsShow: function () {
-            this.itemsCopy = this.$store.state.items.slice();
-            if(this.state === 1) {
-                return this.itemsCopy.filter(item=>item.isChecked === false);
-            }
-            if(this.state === 2){
-                return this.itemsCopy.filter(item=>item.isChecked === true);
-            }
-            return this.$store.state.items;
         }
     }
 }

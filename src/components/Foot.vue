@@ -18,13 +18,13 @@
         name: 'Foot',
         methods: {
             showAll(){
-                this.$emit("change",0);
+                this.$store.commit('updateStatus',0);
             },
             showActive(){
-                this.$emit("change",1);
+                this.$store.commit('updateStatus',1);
             },
             showCompleted(){
-                this.$emit("change",2);
+                this.$store.commit('updateStatus',2);
             }
         }
 
