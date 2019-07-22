@@ -8,7 +8,7 @@
             <input type="text" class="input-text" name="ListItem" v-model="item">
             <div id="button" @click="addItem">Add</div>
         </div>
-        <todolist :items="items"></todolist>
+        <todolist :items="itemsShow"></todolist>
         <div>
             <ul id="filters">
                 <li>
@@ -37,7 +37,8 @@ export default {
         return {
             items: [],
             item: "",
-            itemsCopy:[]
+            itemsCopy:[],
+            state: 0
         }
     },
     methods: {
@@ -47,13 +48,24 @@ export default {
             this.item="";
         },
         showAll(){
-            this.items = this.itemsCopy;
+            this.state = 0;
         },
         showActive(){
-            this.items = this.itemsCopy.filter(item=>item.isChecked==false)
+            this.state = 1;
         },
         showCompleted(){
-            this.items = this.itemsCopy.filter(item=>item.isChecked==true)
+            this.state = 2;
+        }
+    },
+    computed: {
+        itemsShow: function () {
+            if(this.state === 1) {
+                return this.itemsCopy.filter(item=>item.isChecked==false);
+            }
+            if(this.state === 2){
+                return this.itemsCopy.filter(item=>item.isChecked==true);
+            }
+            return this.items;
         }
     }
 }
