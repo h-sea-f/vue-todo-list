@@ -7,5 +7,8 @@ export default {
     },
     updateStatus(state,status){
         state.status = status;
+    },
+    loadItems(state,itemList) {
+        state.items = itemList;
     }
 }

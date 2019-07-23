@@ -24,7 +24,8 @@
         },
         methods: {
             updateItem(e) {
-                this.$store.commit('updateItem', {id: e.target.id, content: e.target.innerText});
+                this.$store.dispatch('updateItem',{id: e.target.id, content: e.target.innerText})
+                // this.$store.commit('updateItem', {id: e.target.id, content: e.target.innerText});
             }
         }
 

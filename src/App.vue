@@ -31,10 +31,14 @@ export default {
     },
     methods: {
         addItem(){
-            this.$store.commit('addItem',{content:this.item,isChecked:false,id:Date.parse(new Date())});
+            this.$store.dispatch('addItem',{content:this.item,completed:false,id:Date.parse(new Date())})
+            // this.$store.commit('addItem',{content:this.item,isChecked:false,id:Date.parse(new Date())});
             this.item = "";
 
         },
+    },
+    mounted() {
+        this.$store.dispatch('getItems');
     }
 }
 </script>
