@@ -9,7 +9,7 @@
             <div id="button" @click="addItem">Add</div>
         </div>
         <todolist></todolist>
-        <foot @change="changeShow"></foot>
+        <foot ></foot>
     </div>
 </template>
 
@@ -31,16 +31,10 @@ export default {
     },
     methods: {
         addItem(){
-            // this.items.push({content:this.item,isChecked:false});
-            // this.itemsCopy = this.items.slice();
-
             this.$store.commit('addItem',{content:this.item,isChecked:false,id:Date.parse(new Date())});
             this.item = "";
 
         },
-        changeShow(flag){
-            this.state = flag;
-        }
     }
 }
 </script>
