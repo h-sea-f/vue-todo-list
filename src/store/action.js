@@ -10,7 +10,12 @@ export default {
         axios.post(url,item).then(response => context.commit('addItem',response.data))
             .catch((error) => console.log(error));
     },
-    updateItem(context,item){
-      axios.put(url+'/'+item.id,item).then(response => context.commit('updateItem',response.data));
+    updateItem({dispatch},item){
+      axios.patch(url+'/'+item.id,item).then(response => {
+          console.log(response.data);
+          dispatch('getItems')});
+    },
+    deleteItem({dispatch},id){
+        axios.delete(url+'/'+id).then(response => dispatch('getItems'))
     }
 }
